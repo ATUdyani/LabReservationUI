@@ -21,8 +21,8 @@ export class ReservationService {
       }),catchError(this.handleError));
   }
 
-  validateReversation() {
-    return this.http.get(`/api/validatereservation`).pipe(map((res) => {
+  validateReversation(data):Observable<any> {
+    return this.http.post(`/api/validatereservation`, data).pipe(map((res) => {
       return res;
     }),catchError(this.handleError));
   }

@@ -19,9 +19,20 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.reservationService.getAllReservations().subscribe(res => this.reservationData = res);
   }
+
+  editModelWithComponent() {
+    const initialState = {
+      header: 'Edit Reservation',
+      activateButton:true,
+      statusDisabled:true
+    };
+    this.bsModalRef = this.modalService.show(AddNewModalComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
   openModalWithComponent() {
     const initialState = {
-      title: 'New Reservation'
+      header: 'New Reservation'
     };
     this.bsModalRef = this.modalService.show(AddNewModalComponent, {initialState});
     this.bsModalRef.content.closeBtnName = 'Close';

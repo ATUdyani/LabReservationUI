@@ -16,15 +16,22 @@ export class LabService {
   ) {}
 
   getAllLabs():Observable<any> {
-    return this.http.get(`/api/labs`).pipe(map((res) => {
+    return this.http.get(`/api/labs`).pipe(map((res:Response) => {
         return res;
       }),catchError(this.handleError));
   }
 
-  getLabDetail(id:string){
-    return this.http.get(`/api/labs/`+id).pipe(map((res) => {
-        return res;
+  getLabDetail(id:string):Observable<LabDetail>{
+    return this.http.get(`/api/labs/`+id).pipe(map((res:Response) => {
+        return res.json();
       }),catchError(this.handleError));
   }
 
+}
+
+export interface LabDetail{
+  name:string,
+  description:string,
+  seats: string,
+  location: string
 }
