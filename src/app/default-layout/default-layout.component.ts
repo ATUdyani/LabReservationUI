@@ -33,7 +33,7 @@ export class DefaultLayoutComponent implements OnInit {
   }
 
   logout() {
-    this.userService.setNull();
     this.router.navigate(["/login"]);
+    this.userService.setNull();
   }
 }

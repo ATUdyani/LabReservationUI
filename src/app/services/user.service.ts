@@ -37,8 +37,8 @@ export class UserService {
     }
 
     setNull() {
-        sessionStorage.setItem("token", null);
-        sessionStorage.setItem("user", null);
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("user");
     }
 
     getUser() {
