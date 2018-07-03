@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
       searchDateP = searchDate.getTime();
     }
     console.log({startDate:searchDateP, labId:this.getIdFromLab(labName)});
-    this.reservationService.searchReservation({startDate:searchDate.getTime(), labId:this.getIdFromLab(labName)}).subscribe(res => this.reservationData = res);
+    this.reservationService.searchReservation({startDate:searchDateP, labId:this.getIdFromLab(labName)}).subscribe(res => this.reservationData = res);
 
 
   }
@@ -117,7 +117,6 @@ export class DashboardComponent implements OnInit {
   }
 
   isCheckAuthorize(id) {
-    console.log(id);
     if (this.userService.getUser().type == "Admin" || this.userService.getUser()._id == id) {
       return true;
     }
