@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LabService, LabDetail } from 'src/app/services/lab.service';
 import { ReservationService } from 'src/app/services/reservation.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'modal-content',
   template: `<div class="modal-header">
@@ -224,7 +225,7 @@ export class AddNewModalComponent implements OnInit {
   formvalidAlert=false;
   formvalidAlertMessage= "";
 
-  constructor(public bsModalRef: BsModalRef, private labService: LabService, private reservationService: ReservationService) { }
+  constructor(public bsModalRef: BsModalRef, private labService: LabService, private reservationService: ReservationService, private userService:UserService) { }
 
   ngOnInit() {
     this.loadLabitems();
@@ -236,7 +237,7 @@ export class AddNewModalComponent implements OnInit {
     fromdate.setHours(this.model.myTime.getHours(), this.model.myTime.getMinutes(), this.model.myTime.getSeconds());
     todate.setHours(this.model.myToTime.getHours(), this.model.myToTime.getMinutes(), this.model.myToTime.getSeconds());
     let data = {
-      userId: "5b2fac7d43735c15d7528716",
+      userId: this.userService.getUser()._id,
       labId: this.getIdFromLab(this.model.selectedLabs),
       title : this.model.title,
       description: this.model.description,

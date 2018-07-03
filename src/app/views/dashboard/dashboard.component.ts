@@ -7,6 +7,7 @@ import {AddNewModalComponent} from './addNewModal.component';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { LabService } from 'src/app/services/lab.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
   bsModalRef: BsModalRef;
   reservationData: Array<any> = [];
   model: any = {};
-  constructor(private modalService: BsModalService, private reservationService: ReservationService, private labService:LabService) {
+  constructor(private modalService: BsModalService, private reservationService: ReservationService, private labService:LabService, private userService:UserService) {
 
   }
   ngOnInit(): void {
@@ -113,5 +114,13 @@ export class DashboardComponent implements OnInit {
       return item[0];
     }
     return {};
+  }
+
+  isCheckAuthorize(id) {
+    console.log(id);
+    if (this.userService.getUser().type == "Admin" || this.userService.getUser()._id == id) {
+      return true;
+    }
+    return false;
   }
 }

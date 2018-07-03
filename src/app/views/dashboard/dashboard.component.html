@@ -156,7 +156,7 @@
 
                 </td>
                 <td class="text-center">
-                  <button class="btn btn-ghost-primary" id ="{{rev._id}}" (click)="editModelWithComponent($event)" type="button">
+                  <button *ngIf="isCheckAuthorize(rev.userId._id)" class="btn btn-ghost-primary" id ="{{rev._id}}" (click)="editModelWithComponent($event)" type="button">
                     <i class="fa fa-lightbulb-o"></i>&nbsp;Edit</button>
                 </td>
               </tr>
