@@ -21,10 +21,10 @@
               <p>Search:</p>
               <div class="row">
                 <div class="col-lg-3">
-                  <input type="text" placeholder="Datepicker" class="form-control" style="margin-top:25px;" bsDatepicker>
+                  <input type="text" [(ngModel)]="model.myDate" placeholder="Datepicker" class="form-control" style="margin-top:25px;" bsDatepicker>
                 </div>
                 <div class="col-lg-2">
-                  <timepicker class="ng-untouched ng-valid ng-dirty">
+                  <timepicker [(ngModel)]="model.myTime" class="ng-untouched ng-valid ng-dirty">
                     <table>
                       <tbody>
                         <tr class="text-center">
@@ -94,7 +94,7 @@
                 </div>
                 <div class="col-lg-7">
                   <fieldset class="form-group" style="margin-top: 25px; min-width:200px;max-width:400px;">
-                    <ng-select [multiple]="true" class="bootstrap ng-untouched ng-pristine ng-valid" placeholder="Choose your lab">
+                    <ng-select [(ngModel)]="model.selectedLabs" [items]="labNames" [multiple]="false" class="bootstrap ng-untouched ng-pristine ng-valid" placeholder="Choose your lab">
                       <div class="below" tabindex="0">
                         <div class="multiple">
                           <input autocomplete="on" tabindex="-1" style="width: 1px;" placeholder="">
@@ -105,14 +105,14 @@
                 </div>
               </div>
               <div class="row">
-                <button class="btn btn-info" type="button">update</button>
+                <button class="btn btn-info" (click)="filter()" type="button">update</button>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons" style="margin-left:15px;margin-bottom:5px;">
-              <label btnradio="Day" class="btn btn-outline-secondary ng-valid ng-touched ng-dirty" id="option1" aria-pressed="false">Recent</label>
-              <label btnradio="Month" class="btn btn-outline-secondary ng-valid ng-touched ng-dirty" id="option2" aria-pressed="false">My Reservations</label>
+              <label btnradio="Recent" (click)="init()" class="btn btn-outline-secondary ng-valid ng-touched ng-dirty" id="option1" aria-pressed="false">Recent</label>
+              <label btnradio="My Reservation" (click)="init()" class="btn btn-outline-secondary ng-valid ng-touched ng-dirty" id="option2" aria-pressed="false">My Reservations</label>
             </div>
           </div>
           <table class="table table-responsive-sm table-hover table-outline mb-0">
@@ -144,7 +144,7 @@
                   </div>
                 </td>
                 <td class="text-center">
-                  <strong>{{rev.date}}</strong>
+                  <strong>{{rev.startDate | date:'medium'}}-{{rev.endDate | date:'mediumTime'}}</strong>
                 </td>
                 <td class="text-center">
                   <div *ngIf="rev.status==='booked'">
@@ -156,7 +156,7 @@
 
                 </td>
                 <td class="text-center">
-                  <button class="btn btn-ghost-primary" type="button">
+                  <button class="btn btn-ghost-primary" id ="{{rev._id}}" (click)="editModelWithComponent($event)" type="button">
                     <i class="fa fa-lightbulb-o"></i>&nbsp;Edit</button>
                 </td>
               </tr>

@@ -13,6 +13,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ReservationService } from '../../services/reservation.service';
 import { LabService } from '../../services/lab.service';
+import {UserService} from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -28,6 +29,6 @@ import { CommonModule } from '@angular/common';
     BsDatepickerModule.forRoot()
   ],
   declarations: [ DashboardComponent ],
-  providers: [BsModalService, ReservationService, LabService ]
+  providers: [BsModalService, ReservationService, LabService, UserService ]
 })
 export class DashboardModule { }

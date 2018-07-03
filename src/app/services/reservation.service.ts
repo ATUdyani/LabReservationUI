@@ -27,8 +27,14 @@ export class ReservationService {
     }),catchError(this.handleError));
   }
 
-  postReservation(data) {
+  postReservation(data):Observable<any>  {
     return this.http.post(`/api/labreservation`, data).pipe(map((res) => {
+      return res;
+    }),catchError(this.handleError));
+  }
+
+  searchReservation(data):Observable<any>  {
+    return this.http.post(`/api/labreservation/search`, data).pipe(map((res) => {
       return res;
     }),catchError(this.handleError));
   }

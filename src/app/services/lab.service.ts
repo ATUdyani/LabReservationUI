@@ -21,9 +21,9 @@ export class LabService {
       }),catchError(this.handleError));
   }
 
-  getLabDetail(id:string):Observable<LabDetail>{
-    return this.http.get(`/api/labs/`+id).pipe(map((res:Response) => {
-        return res.json();
+  getLabDetail(id:string):Observable<any>{
+    return this.http.get(`/api/lab/`+id).pipe(map((res:Response) => {
+        return res;
       }),catchError(this.handleError));
   }
 

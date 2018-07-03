@@ -20,6 +20,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import {AddNewModalComponent} from './views/dashboard/addNewModal.component';
 
+import {UserService} from './services/user.service';
+
 import {
   AppAsideModule,
   AppBreadcrumbModule,
@@ -29,6 +31,7 @@ import {
 } from '@coreui/angular';
 import { ModalModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { AuthenticateGuard } from 'src/app/guards/authenticate.guard';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,7 @@ import { FormsModule } from '@angular/forms';
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],
-  providers: [],
+  providers: [UserService, AuthenticateGuard],
   entryComponents:[AddNewModalComponent],
   bootstrap: [AppComponent]
 })
